@@ -1,0 +1,135 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand: #c9a24b;
+  --color-brand-light: #e8c877;
+  --color-brand-dark: #9a7420;
+  --color-silver: #c9c9c9;
+  --color-ink: #050505;
+  --color-charcoal: #141414;
+  --color-cream: #f6f4ef;
+  --color-sand: #ece9e2;
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-body: "Inter", system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background: #ffffff;
+  color: #111;
+  -webkit-font-smoothing: antialiased;
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+/* Premium gold accent — flat, never full-surface gradients */
+.brand-text {
+  color: #9a7420;
+}
+.on-dark .brand-text,
+.hero-grain .brand-text {
+  color: #e8c877;
+}
+
+.brand-bg {
+  background: #c9a24b;
+}
+.brand-bg:hover {
+  background: #d9b45c;
+}
+
+.brand-border {
+  border-color: #c9a24b;
+}
+
+.hero-grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 78% 30%, rgba(201, 162, 75, 0.14), transparent 55%);
+  pointer-events: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.clamp-1 {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.card-lift {
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s;
+}
+.card-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 45px -18px rgba(0, 0, 0, 0.35);
+}
+
+.img-zoom img {
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.img-zoom:hover img {
+  transform: scale(1.06);
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: none;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 28s linear infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+
+.drawer-transition {
+  transition: transform 0.38s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s;
+}
+
+input, select, textarea {
+  outline: none;
+}
+input:focus, select:focus, textarea:focus {
+  border-color: #c9a24b !important;
+  box-shadow: 0 0 0 3px rgba(201, 162, 75, 0.16);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .animate-marquee { animation: none; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .card-lift:hover { transform: none; }
+}
